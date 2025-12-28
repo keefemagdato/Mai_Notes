@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Notes for Maileen</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f3e7dc, #e7c9a9);
+            font-family: "Segoe UI", Arial, sans-serif;
+            flex-direction: column;
+            padding: 16px;
+        }
+
+        .description {
+            background: rgba(255, 248, 240, 0.95);
+            padding: 20px;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 100%;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .description p {
+            margin: 0;
+            color: #5b3a29;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .card {
+            background: rgba(255, 248, 240, 0.95);
+            padding: 28px 24px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        h1 {
+            margin-bottom: 16px;
+            color: #5b3a29;
+            font-size: 22px;
+        }
+
+        #note {
+            font-size: 17px;
+            color: #4b2e1e;
+            min-height: 80px;
+            transition: opacity 0.3s ease;
+        }
+
+        #date {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #6b4c3b;
+            font-style: italic;
+        }
+
+        button {
+            margin-top: 22px;
+            padding: 14px 28px;
+            font-size: 16px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #a0522d, #d2691e);
+            color: white;
+            transition: transform 0.15s ease;
+            width: 100%;
+        }
+
+        /* Touch-friendly press effect */
+        button:active {
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+<body>
+
+<div class="description">
+    <p>
+        Hello Mai! I made this website (small and developing) to send you random notes and journals of me.
+        Each time you click the “New Note” button, a special message from me will appear, just for you.
+        Please note that this is only exclusive for Maileen Grace Escarda Faunillan.
+        I made it in case you feel down, or miss me bubs (hehe).
+        It’s my small way of making you smile every day, hope you like it!<br><br>
+        <strong>PS:</strong> I'll try to add a new note everyday ☕
+    </p>
+</div>
+
+<div class="card">
+    <h1>HI MAILEEN GRACE! 🍀</h1>
+    <p id="note">Tap the button to generate a random note I made for you.</p>
+    <div id="date"></div>
+    <button onclick="generateNote()">New Note!</button>
+</div>
+
+<script>
+const notes = [
+    { text: "Hello Bubs, if ever you generate this note, you found the first one! Starting this today and hopefully I can send this to you before Dec 21 as my gift!", date: "11/22/25" },
+    { text: "I am so proud of you future RN! Padayon!", date: "11/23/25" },
+    { text: "Let's study hard bubs! But make sure to gauge yourself.", date: "11/26/25" },
+    { text: "You are doing so well mai! Make sure to be kind to yourself also :))", date: "12/05/25" },
+    { text: "I hope we get to see the world together. Taiwan → Japan → Indonesia → Korea → ...", date: "12/06/25" },
+    { text: "You are amazing Maileen Grace! I miss you everyday.", date: "12/08/25" },
+    { text: "Thank you always in all ways mai, grateful for your existence.", date: "12/09/25" },
+    { text: "Just finished my CS32 exam mai, hopefully passed. Thank you for motivating me always.", date: "10/13/25" },
+    { text: "Officially finished my sem bubs, couldn’t have done it without you.", date: "12/17/25" },
+    { text: "Going home in a few hours mai, hope we get to see each other soon!", date: "12/18/25" },
+    { text: "I miss you everyday mai, but I’m happy to take care of daddy.", date: "12/22/25" },
+    { text: "Can’t wait to see you baby, I want to hug you. Bond with the family!", date: "12/23/25" },
+    { text: "Happy holly jolly Christmas bubs! You’re one of my greatest gifts this year.", date: "12/25/25" },
+    { text: "Im sending this today Bubs! I really miss you ling and hopefully we get to see each other the soonest!", date: "12/27/25" }
+];
+
+let remainingNotes = [...notes];
+
+function generateNote() {
+    if (remainingNotes.length === 0) {
+        remainingNotes = [...notes];
+    }
+
+    const index = Math.floor(Math.random() * remainingNotes.length);
+    const selected = remainingNotes.splice(index, 1)[0];
+
+    const noteEl = document.getElementById("note");
+    const dateEl = document.getElementById("date");
+
+    noteEl.style.opacity = 0;
+    dateEl.style.opacity = 0;
+
+    setTimeout(() => {
+        noteEl.textContent = selected.text;
+        dateEl.textContent = "— " + selected.date;
+        noteEl.style.opacity = 1;
+        dateEl.style.opacity = 1;
+    }, 200);
+}
+</script>
+
+</body>
+</html>
